@@ -132,7 +132,7 @@ def manageproduct():
         
         product_list = db.product.find()
 
-        return render_template("manageproduct.html", 
+        return render_template("manageProduct.html", 
                                user_info = user_info,
                                is_admin = is_admin,
                                logged_in = logged_in,
@@ -638,6 +638,9 @@ def api_login():
 def add_to_cart():
     from datetime import datetime
     token_receive = request.cookies.get("mytoken")
+    if not token_receive:
+        return redirect(url_for('login'))
+
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.user.find_one({"username": payload["id"]})
