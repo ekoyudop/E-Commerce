@@ -200,7 +200,7 @@ def addproduct():
         if role not in ["admin"]:
             return redirect(url_for("index"))
         
-        return render_template("addproduct.html", 
+        return render_template("addProduct.html", 
                                user_info = user_info,
                                is_admin = is_admin,
                                logged_in = logged_in)
@@ -283,7 +283,7 @@ def editproduct(id_product):
             return redirect(url_for("index"))
         
         info_product = db.product.find_one({'_id' : ObjectId(id_product)})
-        return render_template("editproduct.html", 
+        return render_template("editProduct.html", 
                                user_info = user_info,
                                is_admin = is_admin,
                                logged_in = logged_in, 
